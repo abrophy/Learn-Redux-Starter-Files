@@ -14,7 +14,12 @@ const defaultState = {
     comments,
 };
 
-const store = createStore(rootReducer, defaultState);
+// add redux dev tools enhancer to store
+const enhancers = compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+);
+
+const store = createStore(rootReducer, defaultState, enhancers);
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
